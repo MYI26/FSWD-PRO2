@@ -1,0 +1,153 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #121212; /* Dark background */
+    font-family: Arial, sans-serif;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Increased spacing for better arrangement */
+    max-width: 400px;
+    width: 100%;
+    padding: 30px;
+    border-radius: 20px;
+    background-color: #1a1a1a;
+    color: #fff;
+    border: 1px solid #333;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4); /* Add subtle shadow */
+}
+
+.title {
+    letter-spacing: -1px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding-left: 30px;
+    font-size: 28px;
+    font-weight: 600;
+    color: #00bfff;
+}
+
+.title::before {
+    width: 18px;
+    height: 18px;
+}
+
+.title::after {
+    width: 18px;
+    height: 18px;
+    animation: pulse 1s linear infinite;
+}
+
+.title::before,
+.title::after {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    left: 0px;
+    background-color: #00bfff;
+}
+
+.message, .signin {
+    font-size: 14.5px;
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+}
+
+.signin a:hover {
+    text-decoration: underline royalblue;
+}
+
+.signin a {
+    color: #00bfff;
+    text-decoration: none;
+}
+
+.flex {
+    display: flex;
+    gap: 10px; /* Space between firstname and lastname fields */
+}
+
+.flex label {
+    flex: 1; /* Ensures both input fields are the same width */
+}
+
+.form label {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Space between label and input field */
+}
+
+.form label .input {
+    background-color: #333;
+    color: #fff;
+    width: 100%;
+    padding: 15px 10px; /* Adjusted padding for better spacing */
+    outline: 0;
+    border: 1px solid rgba(105, 105, 105, 0.397);
+    border-radius: 8px;
+    font-size: 16px; /* Slightly larger font for readability */
+}
+
+.form label .input + span {
+    color: rgba(255, 255, 255, 0.5);
+    position: absolute;
+    left: 15px;
+    top: 12px;
+    font-size: 0.9em;
+    pointer-events: none;
+    transition: 0.3s ease;
+}
+
+.form label .input:placeholder-shown + span {
+    top: 15px;
+    font-size: 0.9em;
+}
+
+.form label .input:focus + span,
+.form label .input:valid + span {
+    color: #00bfff;
+    top: -5px;
+    font-size: 0.8em;
+    font-weight: 600;
+    background-color: #1a1a1a; /* Matches form background */
+    padding: 0 5px;
+    border-radius: 5px;
+}
+
+.submit {
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #00bfff;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit:hover {
+    background-color: #00bfff96;
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(0.9);
+        opacity: 1;
+    }
+
+    to {
+        transform: scale(1.8);
+        opacity: 0;
+    }
+}
