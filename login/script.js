@@ -4,6 +4,7 @@ var logInPage = './signIn.html'
 const signInForm = document.getElementById('login-form')
 const signUpForm = document.getElementById('registration-form')
 const resetForm = document.getElementById('reset-form')
+const notification = document.getElementById('notification');
 
 // Set a cookie
 function setCookie(name, value, days) {
@@ -27,6 +28,19 @@ function deleteCookie(name) {
     document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/`;
 }
 
+
+// Show notification for signUp / signIn success or error 
+function showNotification(message, type) {
+    notification.textContent = message;
+    notification.className = `notification ${type} open`;
+    setTimeout(() => {
+        notification.className = `notification ${type} close`;
+        setTimeout(() => {
+            notification.style.display = 'none';
+        }, 500);
+    }, 3000);
+}
+
 // Handle User Registration
 signUpForm?.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -39,7 +53,7 @@ signUpForm?.addEventListener('submit', function (e) {
 
     // Validate that passwords match
     if (password !== confirmPassword) {
-        alert('Passwords do not match!');
+        showNotification('Passwords do not match!', 'error');
         return;
     }
 
@@ -48,16 +62,18 @@ signUpForm?.addEventListener('submit', function (e) {
     const existingUser = users.find(user => user.email === email);
 
     if (existingUser) {
-        alert('Email is already registered!');
+        showNotification('Email is already registered!', 'error');
         return;
     }
 
     users.push({ firstname, lastname, email, password });
     localStorage.setItem('users', JSON.stringify(users));
 
-    alert('Registration successful! You can now log in.');
+    showNotification('Registration successful! You can now log in.', 'success');
     // Redirect to the login page
-    window.location.href = logInPage;
+    setTimeout(() => {
+        window.location.href = logInPage;
+    }, 3000);
 });
 
 
@@ -73,11 +89,13 @@ signInForm?.addEventListener('submit', function (e) {
     const user = users.find(user => user.email === email && user.password === password);
 
     if (user) {
-        alert(`Welcome back, ${user.firstname}!`);
-            document.cookie = `isLoggedIn=true;path=/;max-age=${60 * 60 * 24}`;
+        document.cookie = `isLoggedIn=true;path=/;max-age=${60 * 60 * 24}`;
+        showNotification(`Welcome back ${user.name}`, 'success');
+        setTimeout(() => {
             window.location.href = mainPage;
+        }, 3000);
     } else {
-        alert('Invalid email or password!');
+        showNotification('Wrong email or password!', 'error');
     }
 });
 
@@ -97,13 +115,16 @@ resetForm?.addEventListener('submit', function(e) {
         // Validate that passwords match
         if (newPassword === confirmPassword) {
             user.password = newPassword;
-            alert('New Password Has Been Set Successfully!');
+            showNotification('New Password Has Been Set Successfully!', 'success');
+            setTimeout(() => {
+                window.location.href = logInPage;
+            }, 3000);
         } else {
-            alert('Passwords do not match!');
+            showNotification('Passwords do not match!', 'error');
             return;
         }
     } else {
-        alert("Email not found. Please enter the email associated with your account.");
+        showNotification("Email not found. Please enter the email associated with your account.", 'error');
     }
 });
 
