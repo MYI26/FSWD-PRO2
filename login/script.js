@@ -1,4 +1,4 @@
-var mainPage = './dashboard.html'
+var mainPage = '../main/dashboard.html'
 var logInPage = './signIn.html'
 
 const signInForm = document.getElementById('login-form')
