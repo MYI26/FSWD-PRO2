@@ -81,6 +81,7 @@ signInForm?.addEventListener('submit', function (e) {
     }
 });
 
+// Handle User Password Reset
 resetForm?.addEventListener('submit', function(e) {
     e.preventDefault();
 

@@ -4,7 +4,7 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    background-color: #121212; /* Dark background */
+    background-color: #121212;
     font-family: Arial, sans-serif;
 }
 
@@ -13,38 +13,38 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #1a1a1a; /* Slightly lighter background for the form */
+    background-color: #1a1a1a;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     max-width: 400px;
-    width: 100%; /* Ensures the form doesn't stretch too wide */
+    width: 100%;
 }
 
 .flex {
     display: flex;
-    flex-direction: column; /* Stack the inputs vertically */
-    gap: 20px; /* Adds spacing between inputs */
-    width: 100%; /* Ensure it spans the full width of the form */
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
 }
 
 .flex label {
-    width: 100%; /* Ensures inputs span full width of their container */
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
 
 .input {
-    background-color: #333; /* Matches the dark theme */
+    background-color: #333;
     color: #fff;
-    width: 100%; /* Ensures the input spans the available width */
+    width: 100%;
     padding: 15px;
     outline: none;
-    border: 1px solid rgba(105, 105, 105, 0.5); /* Subtle border */
-    border-radius: 8px; /* Smooth rounded corners */
-    font-size: 16px; /* Ensures readability */
-    box-sizing: border-box; /* Ensures consistent sizing */
+    border: 1px solid rgba(105, 105, 105, 0.5);
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -75,7 +75,7 @@ body {
     top: -5px;
     font-size: 0.8em;
     font-weight: 600;
-    background-color: #1a1a1a; /* Matches form background */
+    background-color: #1a1a1a;
     padding: 0 5px;
     border-radius: 5px;
 }
@@ -90,13 +90,13 @@ body {
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    width: 100%; /* Ensures button spans the full width */
-    margin-top: 20px; /* Adds space above the button */
+    width: 100%;
+    margin-top: 20px;
 }
 
 .submit:hover {
     background-color: #00bfff96;
-    transform: translateY(-2px); /* Subtle hover effect */
+    transform: translateY(-2px);
 }
 
 .submit:active {
