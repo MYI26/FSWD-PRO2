@@ -90,7 +90,7 @@ signInForm?.addEventListener('submit', function (e) {
 
     if (user) {
         document.cookie = `isLoggedIn=true;path=/;max-age=${60 * 60 * 24}`;
-        showNotification(`Welcome back ${user.name}`, 'success');
+        showNotification(`Welcome back ${user.firstname}`, 'success');
         setTimeout(() => {
             window.location.href = mainPage;
         }, 3000);
@@ -128,10 +128,13 @@ resetForm?.addEventListener('submit', function(e) {
     }
 });
 
-  // Simulate Logout
+// Logout
 function logout() {
     deleteCookie('isLoggedIn');
-    alert('You are logged out!');
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const user = users.find(user => user.email === email);
+    localStorage.removeItem(user);
+    showNotification('You are logged out!', 'info');
 }
 
 if (getCookie('isLoggedIn')) {
