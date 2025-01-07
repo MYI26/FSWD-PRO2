@@ -10,7 +10,7 @@ const notification = document.getElementById('notification');
 function setCookie(name, value, days) {
     const date = new Date();
     date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-    document.cookie = `${name}=${value};expires=${date.toUTCString()};path=/`;
+    document.cookie = `${name}=${value};expires=${date.toUTCString()};path=../main/dashboard`;
 }
 
 // Get a cookie
@@ -40,6 +40,17 @@ function showNotification(message, type) {
         }, 500);
     }, 3000);
 }
+
+// Handle logout cleanup if redirected with query parameter
+document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('logout') === 'true') {
+        // Delete cookies
+        deleteCookie('userEmail');
+        deleteCookie('isLogged');
+        showNotification('You have been logged out.', 'info');
+    }
+});
 
 // Handle User Registration
 signUpForm?.addEventListener('submit', function (e) {
@@ -89,7 +100,8 @@ signInForm?.addEventListener('submit', function (e) {
     const user = users.find(user => user.email === email && user.password === password);
 
     if (user) {
-        document.cookie = `isLoggedIn=true;path=/;max-age=${60 * 60 * 24}`;
+        setCookie('isLoggedIn', true, 1); // Set a general login cookie
+        setCookie('userEmail', user.email, 1); // Store user's email in a cookie
         showNotification(`Welcome back ${user.firstname}`, 'success');
         setTimeout(() => {
             window.location.href = mainPage;
@@ -128,17 +140,11 @@ resetForm?.addEventListener('submit', function(e) {
     }
 });
 
-// Logout
-function logout() {
-    deleteCookie('isLoggedIn');
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-    const user = users.find(user => user.email === email);
-    localStorage.removeItem(user);
-    showNotification('You are logged out!', 'info');
-}
-
-if (getCookie('isLoggedIn')) {
-    console.log('User is logged in');
-} else {
-    console.log('User is not logged in');
-}
+document.addEventListener('DOMContentLoaded', () => {
+    const userEmail = getCookie('userEmail');
+    if (userEmail) {
+        setTimeout(() => {
+            window.location.href = mainPage;
+        }, 500);
+    }
+});
