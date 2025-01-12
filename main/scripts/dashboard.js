@@ -1,3 +1,20 @@
+// Get user icon and popup elements
+const userIcon = document.getElementById('user-icon');
+const userPopup = document.getElementById('user-popup');
+var popOpWindow = false
+
+// Toggle popup visibility on user icon click
+userIcon.addEventListener('click', () => {
+    userPopup.classList.toggle('active');
+});
+
+// Close popup when clicking outside
+document.addEventListener('click', (event) => {
+    if (!userIcon.contains(event.target) && !userPopup.contains(event.target)) {
+        userPopup.classList.remove('active');
+    }
+});
+
 // Set a cookie
 function setCookie(name, value, days) {
     const date = new Date();
@@ -54,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else{
         // Redirect to login if no user data is found
         setTimeout(() => {
-            window.location.href = '../login/signIn.html';
+            window.location.href = '../../login/html/signIn.html';
         }, 10000);
     return;
     }
@@ -69,5 +86,19 @@ document.getElementById('logout-btn').addEventListener('click', () => {
     setTimeout(() => {
         showNotification('You Have Been Logged Out Successfully', 'info')
     }, 3000);
-    window.location.href = '../login/signIn.html?logout=true';
+    window.location.href = '../../login/html/signIn.html?logout=true';
+});
+
+
+// Toggle popup visibility on user icon click
+userIcon.addEventListener('click', () => {
+    userPopup.classList.toggle('active');
+});
+
+// Close popup when clicking outside
+document.addEventListener('click', (event) => {
+    if (userIcon.contains(event.target) && !userPopup.contains(event.target)) {
+        popOpWindow ? userPopup.classList.toggle('active') : userPopup.classList.remove('active');
+        popOpWindow = !popOpWindow;
+    }
 });

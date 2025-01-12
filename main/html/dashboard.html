@@ -10,50 +10,143 @@
     <body>
         <header>
             <div class="logo">
-                <img src="logo.png" alt="Logo">
-            </div>
-            <input type="text" placeholder="Search" class="search-bar">
+                <a href="">
+                    <img src="../media/logo.png" alt="Snokido Logo" class="logo">
+                </a>
+                </div>
+                <input type="text" placeholder="Search" class="search-bar">
             <div class="icons">
-                <img src="user.png" alt="User Icon" class="icon">
-                <img src="stats.png" alt="Stats Icon" class="icon">
+                <div class="user-menu">
+                    <img src="../media/user.png" alt="User Icon" class="icon user-icon" id="user-icon">
+                    <div class="user-popup" id="user-popup">
+                    <button id="logout-btn">Log Out</button>
+                </div>
+                <a href="../html/scores.html"> <image src="../media/stats.png" alt="Stats Icon" class="icon"> </a>
             </div>
-        </header>
-    <main>    
-        <h1 id="welcome-message">Welcome to Your Game Library!</h1>
-
-
-        <div class="featured-games">
-            <div class="game large">
-                <p>Click here to play the first game <a href="../../games/Game 1/carRace.html">Play</a></p>
-            </div>
-            <div class="game large">
-                <p>Click here to play the second game <a href="../../games/Game 2/slidePuzzle.html">Play</a></p>
-            </div>
-        </div>
-        <div class="game-grid">
-            <div class="game small">Game 3</div>
-            <div class="game small">Game 4</div>
-            <div class="game small">Game 5</div>
-            <div class="game small">Game 6</div>
-            <div class="game small">Game 7</div>
-            <div class="game small">Game 8</div>
-            <div class="game small">Game 9</div>
-            <div class="game small">Game 10</div>
-            <div class="game small">Game 11</div>
-            <div class="game small">Game 12</div>
-            <div class="game small">Game 13</div>
-            <div class="game small">Game 14</div>
-            <div class="game small">Game 15</div>
-            <div class="game small">Game 16</div>
-            <div class="game small">Game 17</div>
-            <div class="game small">Game 18</div>
-        </div>
-        <button id="logout-btn">Log Out</button>
+    </header>
+    <main>
         <div id="notification" class="notification"></div>
+        <h1 id="welcome-message">
+            Welcome to Your Game Library!
+        </h1>
+        <div class="general-flex-container">
+            <div class="first-flex-container">
+                <div class="flex-large">
+                    <img src="../media/cars.jpg" alt="Image1"> 
+                    <p><a href="../../games/Game 1/carRace.html">Play Cars Race</a></p>
+                </div>
+                <div class="flex-large">
+                    <img src="../media/slidePuzzle.jpg" alt="Image2">
+                    <p><a href="../../games/Game 2/slidePuzzle.html">Play Slide Puzzle</p></a>
+                </div>
+            </div> 
+            <div class="second-flex-container">
+                <div class="game-small">
+                    <img src="https://w8.snokido.com/img/minefun-io.jpg" width="190" height="110" alt="Minefun.io">
+                    <p>Game 3</p>
+                    <p><a href="">Play</a></p>
+                </div>
+                <div class="game-small">
+                    <img src="https://w8.snokido.com/img/zombie-derby-pixel-survival.jpg" width="190" height="110" alt="Zombie Derby : Pixel Survival">
+                    <p>Game 4</p>
+                    <p><a href="">Play</a></p>
+                </div>
+                <div class="game-small">
+                    <img src="https://w8.snokido.com/img/monkey-mart.jpg?030125" width="190" height="110" alt="Monkey Mart">
+                    <p>Game 5</p>
+                    <p><a href="">Play</a></p>
+                </div>
+                <div class="game-small">
+                    <img src="https://w8.snokido.com/img/bonefields.jpg" width="190" height="110" alt="Bonefields">
+                    <p>Game 6</p>
+                    <p><a href="">Play</a></p>
+                </div>
+                <div class="game-small">
+                    <img src="https://w8.snokido.com/img/tap-road.jpg" width="190" height="110" alt="Tap Road">
+                    <p>Game 7</p>
+                    <p><a href="">Play</a></p>
+                </div>
+                <div class="game-small">
+                    <img src="https://w8.snokido.com/img/1v1-lol.jpg?010121" width="190" height="110" alt="1v1.LOL">
+                    <p>Game 8</p>
+                    <p><a href="">Play</a></p>
+                </div>
+                <div class="game-small">
+                    <img src="https://w8.snokido.com/img/kour-io.jpg" width="190" height="110" alt="Kour.io">
+                    <p>Game 9</p>
+                    <p><a href="">Play</a></p>
+                </div>
+                <div class="game-small">
+                    <img src="https://w8.snokido.com/img/mr-racer.jpg" width="190" height="110" alt="Mr Racer">
+                    <p>Game 10</p>
+                    <p><a href="">Play</a></p>
+                </div>
+                <div class="game-small">
+                    <img src="https://w8.snokido.com/img/cuttherope.jpg" width="190" height="110" alt="Cut The Rope">
+                    <p>Game 11</p>
+                    <p><a href="">Play</a></p>
+                </div>
+                <div class="game-small">
+                    <img src="https://w8.snokido.com/img/smiling-glass.jpg" width="190" height="110" alt="Smiling Glass">
+                    <p>Game 12</p>
+                    <p><a href="">Play</a></p>
+                </div>
+                <div class="game-small">
+                    <img src="https://w8.snokido.com/img/monopoly.jpg" width="190" height="110" alt="Monopoly">
+                    <p>Game 13</p>
+                    <p><a href="">Play</a></p>
+                </div>
+                <div class="game-small">
+                    <img src="https://w8.snokido.com/img/moto-x3m.jpg?v1" width="190" height="110" alt="Moto X3M">
+                    <p>Game 14</p>
+                    <p><a href="">Play</a></p>
+                </div>
+                <div class="game-small">
+                    <img src="https://w8.snokido.com/img/uno-online.jpg" width="190" height="110" alt="Uno Online">
+                    <p>Game 15</p>
+                    <p><a href="">Play</a></p>
+                </div>
+                <div class="game-small">
+                    <img src="https://w8.snokido.com/img/guess-their-answer.jpg" width="190" height="110" alt="Guess Their Answer">
+                    <p>Game 16</p>
+                    <p><a href="">Play</a></p>
+                </div>
+                <div class="game-small">
+                    <img src="https://w8.snokido.com/img/football-legends-2019.jpg?090519" width="190" height="110" alt="Football Legends 2019">
+                    <p>Game 17</p>
+                    <p><a href="">Play</a></p>
+                </div>
+                <div class="game-small">
+                    <img src="https://w8.snokido.com/img/geometry-jump.jpg" width="190" height="110" alt="Geometry Jump">
+                    <p>Game 18</p>
+                    <p><a href="">Play</a></p>
+                </div>
+                <div class="game-small">
+                    <img src="https://w8.snokido.com/img/vectaria-io.jpg" width="190" height="110" alt="Vectaria">
+                    <p>Game 19</p>
+                    <p><a href="">Play</a></p>
+                </div>
+                <div class="game-small">
+                    <img src="https://w8.snokido.com/img/sonic-rpg-9.jpg" width="190" height="110" alt="Sonic RPG 9">
+                    <p>Game 20</p>
+                    <p><a href="">Play</a></p>
+                </div></div>
+            </div>
+        </main>
+    
+        <footer>
+            <div class="footer-left">
+                <img src="../media/logo.png" alt="Snokido Logo" class="logo">
+                <span>All rights reserved ©2025 Game Over</span>
+            </div>
+    
+            <div class="footer-right">
+                <a href="/contact">Contact</a>
+                <a href="/cgu">Terms and Conditions</a>
+                <a href="/confidentialite">Confidentiality</a>
+                <img src="">
+            </div>
+        </footer>
         <script src="../scripts/dashboard.js"></script>
-    </main>
-    <footer>
-        <p>Footer content</p>
-    </footer>
     </body>
 </html>

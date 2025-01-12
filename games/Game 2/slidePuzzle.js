@@ -8,6 +8,15 @@ const result = document.getElementById("result");
 let currentElement = "";
 let movesCount, imagesArr = [];
 
+function getCookie(name) {
+    const cookies = document.cookie.split('; ');
+    for (let cookie of cookies) {
+        const [key, value] = cookie.split('=');
+        if (key === name) return value;
+    }
+    return "guest";
+}
+
 const isTouchDevice = () => {
     try {
         //We try to create TouchEvent (it would fail for desktops ad throw error)
@@ -104,13 +113,38 @@ const selectImage = (e) => {
         //Win condition
         if (imagesArr.join("") == "123456789") {
             setTimeout(() => {
-            //When games ends display the cover screen again
-            coverScreen.classList.remove("hide");
-            container.classList.add("hide");
-            result.innerText = `Total Moves: ${movesCount}`;
-            startButton.innerText = "RestartGame";
-        }, 1000); }
+                // When game ends, display the cover screen again
+                coverScreen.classList.remove("hide");
+                container.classList.add("hide");
+                result.innerText = `Total Moves: ${movesCount}`;
+                startButton.innerText = "Restart Game";
         
+                // Save to local storage
+                const userEmail = getCookie('userEmail');
+                const gameName = "Sliding Puzzle";
+        
+                const existingScores = JSON.parse(localStorage.getItem("usersScore")) || [];
+                // Check if a score already exists for the user and game
+                const userScoreIndex = scoresList.findIndex((score) => score.email === userEmail && score.gameName === gameName);
+    
+                if (userScoreIndex !== -1) {
+                    // Update the score if the current one is better
+                    if (movesCount < scoresList[userScoreIndex].bestMoves) {
+                        scoresList[userScoreIndex].bestMoves = movesCount;
+                    }
+                } else {
+                    // Add a new entry if no previous score exists for the user and game
+                    scoresList.push({
+                        email: userEmail,
+                        gameName,
+                        bestMoves: movesCount,
+                    });
+                }
+    
+                // Save the updated scores list to local storage
+                localStorage.setItem("usersScore", JSON.stringify(scoresList));                
+            }, 1000);
+        }
         //Increment a display move
         movesCount += 1;
         moves.innerText = `Moves: ${movesCount}`;

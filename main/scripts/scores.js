@@ -1,11 +1,10 @@
-// Fetch logged-in user email from cookies or set a default for testing
 function getCookie(name) {
     const cookies = document.cookie.split('; ');
     for (let cookie of cookies) {
         const [key, value] = cookie.split('=');
         if (key === name) return value;
     }
-    return "guest@example.com"; // Default for testing
+    return "guest";
 }
 
 const userEmail = getCookie('userEmail');

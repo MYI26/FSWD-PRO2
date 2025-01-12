@@ -134,7 +134,7 @@ function getCookie(name) {
         const [key, value] = cookie.split('=');
         if (key === name) return value;
     }
-    return null;
+    return "guest";
 }
 
 // Start game loop

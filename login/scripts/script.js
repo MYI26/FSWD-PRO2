@@ -1,5 +1,5 @@
-var mainPage = '../main/dashboard.html'
-var logInPage = './signIn.html'
+var mainPage = '../../main/html/dashboard.html'
+var logInPage = '../html/signIn.html'
 
 const signInForm = document.getElementById('login-form')
 const signUpForm = document.getElementById('registration-form')
@@ -45,7 +45,11 @@ function showNotification(message, type) {
 document.addEventListener('DOMContentLoaded', () => {
     const params = new URLSearchParams(window.location.search);
     if (params.get('logout') === 'true') {
-        // Delete cookies
+        const userToRemove = getCookie('userEmail');
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+        let updateUsers = users.filter(user => user.email !== userToRemove);
+        localStorage.setItem('users', JSON.stringify(updateUsers));
+
         deleteCookie('userEmail');
         deleteCookie('isLogged');
         showNotification('You have been logged out.', 'info');

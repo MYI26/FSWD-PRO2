@@ -4,20 +4,51 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 /* Body Styling */
 body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(120deg, #4f8ef9, #a3d5ff);
-    color: #333;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
     text-align: center;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(120deg, #4f8ef9, #a3d5ff);
+    color: #333;
 }
 
+/* Header Styling */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 4px 20px;
+    background-color: #173516;
+    color: white;
+  }
+  header .logo img {
+    width: 100px; /* Adjust size as needed */
+    height: auto; 
+  }
+  header .search-bar {
+    width: 300px; /* Smaller search bar */
+    padding: 10px;
+  }
+  header .icons {
+    display: flex;
+    gap: 20px;
+  }
+  header .icon {
+    width: 50px; /* Icon size */
+    height: auto;
+    cursor: pointer;
+  }
+
+/* Main Styling */
+main {
+    padding: 20px;
+  }
 /* Welcome Message */
 h1#welcome-message {
     font-size: 2.5rem;
@@ -25,6 +56,7 @@ h1#welcome-message {
     margin-bottom: 20px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
+
 
 /* Logout Button */
 button#logout-btn {
@@ -38,33 +70,9 @@ button#logout-btn {
     transition: background-color 0.3s ease;
     margin-bottom: 20px;
 }
-
 button#logout-btn:hover {
     background-color: #d32f2f;
-}
-
-/* Flex Container */
-.flex {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Links */
-.flex p a {
-    text-decoration: none;
-    color: #4f8ef9;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
-
-.flex p a:hover {
-    color: #003c91;
-}
+}*/
 
 /* Notification Styling */
 .notification {
@@ -82,28 +90,22 @@ button#logout-btn:hover {
     z-index: 1000;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
-
 .notification.success {
     background-color: #4caf50;
 }
-
 .notification.error {
     background-color: #f44336;
 }
-
 .notification.info {
     background-color: #2196f3;
 }
-
 .notification.open {
     display: block;
     animation: slideIn 0.5s forwards;
 }
-
 .notification.close {
     animation: slideOut 0.5s forwards;
 }
-
 /* Notification Animations */
 @keyframes slideIn {
     from {
@@ -115,7 +117,6 @@ button#logout-btn:hover {
         transform: translateX(-50%) translateY(0);
     }
 }
-
 @keyframes slideOut {
     from {
         opacity: 1;
@@ -127,10 +128,175 @@ button#logout-btn:hover {
     }
 }
 
+/* General Flex Container */
+.general-flex-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    width: 100%;
+}
+
+/* Large Flex Container */
+.first-flex-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    padding: 40px;
+    border-radius: 20px;
+    width: 70%;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+.flex-large {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+    background-color: #a3d5ff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+/* p */
+.flex-large p {
+    font-size: 1.5rem; /* Large font size */
+    padding: 15px; /* Good padding */
+}
+.flex-large p a {
+    text-decoration: none;
+    color: #4f8ef9;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+.flex-large p a:hover {
+    color: #003c91;
+}
+
+/* Small Flex Container */
+.second-flex-container{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    padding: 10px;
+    border-radius: 20px;
+    width: 28%;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+.game-small {
+width: 200px; /* Small game size */
+height: 200px;
+background-color: #a3d5ff;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+text-align: center;
+border-radius: 8px;
+}
+/* p */
+.flex-.game-small p {
+    font-size: 1.5rem; /* Large font size */
+    padding: 15px; /* Good padding */
+}
+.game-small p a {
+    color: #4f8ef9;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+.game-small p a:hover {
+    color: #003c91;
+}
+  
 /* Footer Styling */
 footer {
-    margin-top: 30px;
-    font-size: 0.875rem;
+    background-color: #173516;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Arial, sans-serif;
     color: #ffffff;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    font-size: 14px;
+    width: 100%;
+}
+.footer-left {
+    display: flex;
+    align-items: center;
+}
+.logo {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+}
+.footer-right {
+    display: flex;
+    gap: 20px;
+}
+.footer-right a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.footer-right a:hover {
+    color: #cccccc;
+}
+.footer-right img {
+    width: 25px;
+    height: auto;
+    vertical-align: middle;
+}
+
+/* User Menu */
+.user-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.user-icon {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.user-icon:hover {
+    transform: scale(1.1);
+}
+
+.user-popup {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+.user-popup button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.user-popup button:hover {
+    background-color: #d32f2f;
+}
+
+/* Show popup */
+.user-popup.active {
+    display: block;
 }
