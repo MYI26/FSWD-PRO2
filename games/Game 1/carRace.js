@@ -2,14 +2,21 @@ const road = document.getElementById('road');
 const car = document.getElementById('car');
 const obstacle1 = document.getElementById('obstacle1');
 const obstacle2 = document.getElementById('obstacle2');
-const scoreDisplay = document.getElementById('score');
+const currentScoreDisplay = document.getElementById('current-score');
+const highestScoreDisplay = document.getElementById('highest-score');
 
-let carLeft = 135; // Starting position of the car
-let obstacle1Top = -100; // Initial position of the first obstacle
-let obstacle2Top = -300; // Initial position of the second obstacle
+let carLeft = 135;
+let obstacle1Top = -100;
+let obstacle2Top = -300;
 let score = 0;
 let gameSpeed = 2;
 let isGameOver = false;
+
+// Retrieve the highest score from local storage and update the HTML
+const userEmail = getCookie('userEmail') || "guest";
+const gameName = 'Car Racing';
+let highestScore = getHighestScore(userEmail, gameName);
+highestScoreDisplay.textContent = highestScore || 0;
 
 // Move car with arrow keys
 document.addEventListener('keydown', (e) => {
@@ -26,7 +33,6 @@ document.addEventListener('keydown', (e) => {
 function updateGame() {
     if (isGameOver) return;
 
-    // Move obstacles
     obstacle1Top += gameSpeed;
     obstacle2Top += gameSpeed;
 
@@ -45,15 +51,12 @@ function updateGame() {
     obstacle1.style.top = obstacle1Top + 'px';
     obstacle2.style.top = obstacle2Top + 'px';
 
-    // Check collision
     if (checkCollision(car, obstacle1) || checkCollision(car, obstacle2)) {
         gameOver();
     }
 
-    // Update score
-    scoreDisplay.textContent = score;
+    currentScoreDisplay.textContent = score;
 
-    // Increase game speed over time
     if (score % 10 === 0) {
         gameSpeed += 0.01;
     }
@@ -61,7 +64,7 @@ function updateGame() {
     requestAnimationFrame(updateGame);
 }
 
-// Collision detection
+// Check collision
 function checkCollision(car, obstacle) {
     const carRect = car.getBoundingClientRect();
     const obstacleRect = obstacle.getBoundingClientRect();
@@ -78,25 +81,61 @@ function checkCollision(car, obstacle) {
 function gameOver() {
     isGameOver = true;
 
-    // Create the modal dynamically
-    const modal = document.createElement('div');
-    modal.classList.add('game-over-modal');
+    // Update local storage with the new score
+    updateLocalStorage(score);
 
-    modal.innerHTML = `
-        <div class="modal-content">
-            <h1>Game Over!</h1>
-            <p>Your Score: <span id="final-score">${score}</span></p>
-            <button id="restart-btn">Restart</button>
-        </div>
-    `;
+    // Display Game Over modal
+    const modal = document.querySelector('.game-over-modal');
+    modal.style.display = 'flex';
+    document.getElementById('final-score').textContent = score;
 
-    document.body.appendChild(modal);
-
-    // Add event listener to restart button
+    // Add event listener for restart
     document.getElementById('restart-btn').addEventListener('click', () => {
         location.reload();
     });
 }
 
-// Start the game
+// Update local storage with the score
+function updateLocalStorage(currentScore) {
+    let userScores = JSON.parse(localStorage.getItem('usersScore')) || [];
+
+    const userIndex = userScores.findIndex((score) => score.email === userEmail && score.game === gameName);
+
+    if (userIndex !== -1) {
+        // Update score if current score is higher
+        if (currentScore > userScores[userIndex].score) {
+            userScores[userIndex].score = currentScore;
+            highestScore = currentScore;
+        }
+    } else {
+        // Add new user score
+        userScores.push({ email: userEmail, game: gameName, score: currentScore });
+        highestScore = currentScore;
+    }
+
+    // Save updated scores back to local storage
+    localStorage.setItem('usersScore', JSON.stringify(userScores));
+
+    // Update highest score in the HTML
+    highestScoreDisplay.textContent = highestScore;
+}
+
+// Get the highest score for the current user
+function getHighestScore(email, game) {
+    const userScores = JSON.parse(localStorage.getItem('usersScore')) || [];
+    const userScore = userScores.find(score => score.email === email && score.game === game);
+    return userScore ? userScore.score : null;
+}
+
+// Get cookie value
+function getCookie(name) {
+    const cookies = document.cookie.split('; ');
+    for (let cookie of cookies) {
+        const [key, value] = cookie.split('=');
+        if (key === name) return value;
+    }
+    return null;
+}
+
+// Start game loop
 updateGame();
