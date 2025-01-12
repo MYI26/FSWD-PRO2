@@ -1,3 +1,4 @@
+const loginPage = "../../login/html/signIn.html"
 const road = document.getElementById('road');
 const car = document.getElementById('car');
 const obstacle1 = document.getElementById('obstacle1');
@@ -13,7 +14,7 @@ let gameSpeed = 2;
 let isGameOver = false;
 
 // Retrieve the highest score from local storage and update the HTML
-const userEmail = getCookie('userEmail') || "guest";
+const userEmail = getCookie('userEmail');
 const gameName = 'Car Racing';
 let highestScore = getHighestScore(userEmail, gameName);
 highestScoreDisplay.textContent = highestScore || 0;
@@ -27,6 +28,16 @@ document.addEventListener('keydown', (e) => {
         carLeft += 30;
     }
     car.style.left = carLeft + 'px';
+});
+
+// If the user is not log in, redirect him back to login page 
+document.addEventListener('DOMContentLoaded', () => {
+    const userEmail = getCookie('userEmail');
+    if (!userEmail) {
+        setTimeout(() => {
+            window.location.href = loginPage;
+        }, 500);
+    }
 });
 
 // Update obstacles and score
@@ -134,7 +145,7 @@ function getCookie(name) {
         const [key, value] = cookie.split('=');
         if (key === name) return value;
     }
-    return "guest";
+    return null;
 }
 
 // Start game loop

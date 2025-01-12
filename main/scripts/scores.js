@@ -1,11 +1,4 @@
-function getCookie(name) {
-    const cookies = document.cookie.split('; ');
-    for (let cookie of cookies) {
-        const [key, value] = cookie.split('=');
-        if (key === name) return value;
-    }
-    return "guest";
-}
+const loginPage = "../../login/html/signIn.html"
 
 const userEmail = getCookie('userEmail');
 document.getElementById('user-email').textContent = userEmail;
@@ -20,6 +13,17 @@ const sortedScores = userScores.sort((a, b) => b.score - a.score);
 
 // Populate the table
 const tableBody = document.querySelector('#score-table tbody');
+
+
+function getCookie(name) {
+    const cookies = document.cookie.split('; ');
+    for (let cookie of cookies) {
+        const [key, value] = cookie.split('=');
+        if (key === name) return value;
+    }
+    return null;
+}
+
 sortedScores.forEach((entry, index) => {
     const row = document.createElement('tr');
     row.innerHTML = `
@@ -39,3 +43,13 @@ if (!sortedScores.length) {
     `;
     tableBody.appendChild(noDataRow);
 }
+
+// If the user is not log in, redirect him back to login page 
+document.addEventListener('DOMContentLoaded', () => {
+    const userEmail = getCookie('userEmail');
+    if (!userEmail) {
+        setTimeout(() => {
+            window.location.href = loginPage;
+        }, 500);
+    }
+});

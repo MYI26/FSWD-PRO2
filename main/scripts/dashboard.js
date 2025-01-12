@@ -1,3 +1,4 @@
+const loginPage = "../../login/html/signIn.html"
 // Get user icon and popup elements
 const userIcon = document.getElementById('user-icon');
 const userPopup = document.getElementById('user-popup');
@@ -100,5 +101,15 @@ document.addEventListener('click', (event) => {
     if (userIcon.contains(event.target) && !userPopup.contains(event.target)) {
         popOpWindow ? userPopup.classList.toggle('active') : userPopup.classList.remove('active');
         popOpWindow = !popOpWindow;
+    }
+});
+
+// If the user is not log in, redirect him back to login page 
+document.addEventListener('DOMContentLoaded', () => {
+    const userEmail = getCookie('userEmail');
+    if (!userEmail) {
+        setTimeout(() => {
+            window.location.href = loginPage;
+        }, 500);
     }
 });

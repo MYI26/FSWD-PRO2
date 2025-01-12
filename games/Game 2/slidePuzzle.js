@@ -1,4 +1,4 @@
-//Initial References
+const loginPage = "../../login/html/signIn.html"
 const moves = document.getElementById("moves");
 const container = document.querySelector(".container");
 const startButton = document.getElementById("start-button");
@@ -14,7 +14,7 @@ function getCookie(name) {
         const [key, value] = cookie.split('=');
         if (key === name) return value;
     }
-    return "guest";
+    return null;
 }
 
 const isTouchDevice = () => {
@@ -150,6 +150,16 @@ const selectImage = (e) => {
         moves.innerText = `Moves: ${movesCount}`;
     }
 };
+
+// If the user is not log in, redirect him back to login page 
+document.addEventListener('DOMContentLoaded', () => {
+    const userEmail = getCookie('userEmail');
+    if (!userEmail) {
+        setTimeout(() => {
+            window.location.href = loginPage;
+        }, 500);
+    }
+});
 
 //Start button click should display the container
 startButton.addEventListener("click", () => {

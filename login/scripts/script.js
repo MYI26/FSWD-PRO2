@@ -144,6 +144,7 @@ resetForm?.addEventListener('submit', function(e) {
     }
 });
 
+// If the user already signed in and the cookie is valid for 1 day
 document.addEventListener('DOMContentLoaded', () => {
     const userEmail = getCookie('userEmail');
     if (userEmail) {
