@@ -125,16 +125,16 @@ const selectImage = (e) => {
         
                 const existingScores = JSON.parse(localStorage.getItem("usersScore")) || [];
                 // Check if a score already exists for the user and game
-                const userScoreIndex = scoresList.findIndex((score) => score.email === userEmail && score.gameName === gameName);
+                const userScoreIndex = existingScores.findIndex((score) => score.email === userEmail && score.gameName === gameName);
     
                 if (userScoreIndex !== -1) {
                     // Update the score if the current one is better
-                    if (movesCount < scoresList[userScoreIndex].bestMoves) {
-                        scoresList[userScoreIndex].bestMoves = movesCount;
+                    if (movesCount < existingScores[userScoreIndex].bestMoves) {
+                        existingScores[userScoreIndex].bestMoves = movesCount;
                     }
                 } else {
                     // Add a new entry if no previous score exists for the user and game
-                    scoresList.push({
+                    existingScores.push({
                         email: userEmail,
                         gameName,
                         bestMoves: movesCount,
@@ -142,7 +142,7 @@ const selectImage = (e) => {
                 }
     
                 // Save the updated scores list to local storage
-                localStorage.setItem("usersScore", JSON.stringify(scoresList));                
+                localStorage.setItem("usersScore", JSON.stringify(existingScores));                
             }, 1000);
         }
         //Increment a display move
